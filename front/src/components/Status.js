@@ -14,7 +14,9 @@ const styles = {
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        padding: 10
+        padding: 10,
+        width: '100%',
+        overflow:'hidden'
     },
     statusCell: {
         backgroundColor: '#F0F0F0',
@@ -84,12 +86,21 @@ const DownloadButton = ({file}) => {
 
 }
 
+const ellipsis = (str, max = 10) => {
+    if (str.length > max) {
+        const len = (max - str.length - 10) / 2
+        return str.slice(0,len) + '...' + str.slice(-len)
+    }
+    return str
+}
+
 const File = ({file}) => {
+    const displayName = `${file.name} (${readableFileSize(file.originalSize)})`
     return <div style={{animationDuration: '300ms'}} className="list-item animate__animated animate__fadeInDown">
         <Grid container>
             <Grid item style={{flexGrow: 1}}>
-                <div style={styles.cell}>
-                    <strong>{file.name} {' '} ({readableFileSize(file.originalSize)}) </strong>
+                <div style={{...styles.cell,  overflow: 'hidden'}}>
+                    <strong className="ellipsis">{ellipsis(displayName)}</strong>
                 </div>
             </Grid>
             <Grid item>

@@ -30,7 +30,7 @@ const worker = () => {
         // do something
 
         status.available = false
-        const output = config.upload.out + found.data.id + found.data.extension
+        const output = config.upload.out + found.data.id + '.mp4'//found.data.extension
         //saveDatabase(items, 'history')
         update(found.id, {
             output,

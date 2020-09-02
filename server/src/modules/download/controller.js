@@ -15,7 +15,10 @@ const download = (req, res) => {
             message: 'file not ready yet'
         })
     }
-    return res.download(file.data.output, file.data.name);
+    const filename = file.data.name
+        const extension = filename.split('.').pop()
+
+    return res.download(file.data.output, filename.replace('.' + extension, '.mp4') );
 }
 
 module.exports = {

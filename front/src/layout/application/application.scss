@@ -6,6 +6,12 @@
   color: #FFF
 }
 
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .list {
   .list-item {
     border-bottom: 1px solid rgba(0, 0, 0, .1);
