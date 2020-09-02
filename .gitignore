@@ -23,7 +23,7 @@ yarn-error.log*
 .project
 package-lock.json
 yarn.lock
-front/.env
+
 
 server/share
 /docker-file.txt
