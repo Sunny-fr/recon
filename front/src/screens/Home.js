@@ -28,11 +28,14 @@ const Queue = ({files, removeFromQueue}) => {
 }
 
 const Home = () => {
+
     // {
-    //     data:{
-    //         name: 'hello', size: 15000000
-    //     }
+    //     id:'test',
+    //         data:{
+    //     name: 'hello', size: 15000000
     // }
+    // }
+
     const [files, setFiles] = useState([])
     const fileHandler = (files) => setFiles(state => {
         const toAdd = files.reduce((s, i) => {

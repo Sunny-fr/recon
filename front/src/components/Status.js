@@ -3,7 +3,7 @@ import useFetch from 'use-http'
 import config from '../config/config'
 import Grid from '@material-ui/core/Grid'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import {Check, CloudDownload} from '@material-ui/icons'
+import {Check, CloudDownload, WarningRounded} from '@material-ui/icons'
 import './status.scss'
 import Button from '@material-ui/core/Button'
 import {readableFileSize} from '../utils/file'
@@ -49,6 +49,11 @@ const FileStatus = ({file}) => {
             <CircularProgress style={{marginLeft: 10}} size={20}/>
         </div>
     }
+
+    return <div style={styles.statusCell}>
+        Erreur
+        <WarningRounded style={{marginLeft: 10}}/>
+    </div>
 
 }
 

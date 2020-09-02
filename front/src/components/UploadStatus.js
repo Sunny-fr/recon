@@ -22,7 +22,7 @@ const UploadStatus = ({state}) => {
     )
 
     return <React.Fragment>
-        <CircularProgress size={20}  style={{marginRight: 10}}/> Envoi
+        <CircularProgress size={20}  style={{marginRight: 10, color: '#FFF'}}/> Envoi
     </React.Fragment>
 
 }
