@@ -1,4 +1,4 @@
-#Recon
+# Recon(vert)
 
 Video file optimizer
 
