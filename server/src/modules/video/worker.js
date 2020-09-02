@@ -55,6 +55,7 @@ const worker = () => {
         }).finally(() => {
             status.available = true
             worker()
+            fs.unlinkSync(found.data.path)
         })
 
     }
