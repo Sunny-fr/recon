@@ -19,7 +19,7 @@ WORKDIR /usr/src/app/front
 
 COPY front .
 ARG build_front=false
-RUN if [ "$build_front" = "true" ]; then npm install && npm run build; fi
+RUN if [ "$build_front" = "true" ]; then npm rebuild node-sass && npm install && npm run build; fi
 
 FROM node:12-alpine as recon
 

@@ -81,7 +81,7 @@ const File = ({file, onComplete, className}) => {
         }
     }
     useEffect(() => {
-        //uploadHandler()
+        uploadHandler()
     })
     return <div style={{animationDuration: '400ms'}} className={className}>
         <Grid container>
