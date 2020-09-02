@@ -18,7 +18,7 @@ function start() {
     const app = express();
 
     app.use(fileUpload({
-        debug: true,
+        //debug: true,
         createParentPath: true,
         limits: {
             fileSize: 2000 * 1024 * 1024 * 1024 //2MB max file(s) size
