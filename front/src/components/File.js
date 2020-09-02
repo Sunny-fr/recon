@@ -114,7 +114,7 @@ const File = ({file, onComplete, className}) => {
             </Grid>
             <Grid item style={{flexBasis: 100}}>
                 <div style={styles.cell}>
-                    {progress.toFixed(2)}%
+                    {(progress * 100).toFixed(2)}%
                 </div>
             </Grid>
             <Grid item>
