@@ -1,8 +1,9 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Recon",
   "main": "src/index.js",
+  "repository": "https://github.com/Sunny-fr/recon",
   "scripts": {
     "start": "node src/index.js --port=8080",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,6 +13,8 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "fluent-ffmpeg": "^2.1.2",
     "morgan": "^1.10.0",
     "yargs": "^15.4.1"
   }

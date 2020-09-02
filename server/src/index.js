@@ -1,50 +1,51 @@
-
 const express = require('express');
-const {argv} = require('yargs');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const router = require('./router');
+const router = require('./config/router');
+const fileUpload = require('express-fileupload');
+const config = require('./config/config')
 
-// Constants
-const DEFAULT_PORT = 8080;
-const DEFAULT_HOST = '0.0.0.0';
-const PUBLIC_PATH = ''
-const PUBLIC_PATH_DIRECTORY = './public'
 
-const maxPayloadSize = '10mb'
+const videoModule = require('./modules/video/register')
+const statusModule = require('./modules/status/register')
+const downloadModule = require('./modules/download/register')
+
+//const JSON_MAX_PAYLOAD_SIZE = '200mb'
+
 
 function start() {
 
-    const port = argv.port || DEFAULT_PORT
-    const host = argv.host || DEFAULT_HOST
+
+
 
 
     const app = express();
-    app.get('/', (req, res) => {
-        res.send('Hello World');
-    });
 
+    app.use(fileUpload({
+        createParentPath: true,
+        limits: {
+            fileSize: 2000 * 1024 * 1024 * 1024 //2MB max file(s) size
+        },
+    }));
+
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({extended:true}));
     // configure app
     app.use(morgan( 'dev')); // log requests to the console
 
 
-    // configure body parser
-    app.use(bodyParser.urlencoded({
-        limit: maxPayloadSize,
-        extended: true,
-    }));
-    app.use(bodyParser.json({
-        type: '*/*',
-        limit: maxPayloadSize
-    }));
+    //MODULES REGISTRATION
+    videoModule.register(app, router, config)
+    statusModule.register(app, router, config)
+    downloadModule.register(app, router, config)
 
 
-    app.use(PUBLIC_PATH, router);
-    app.use(PUBLIC_PATH, express.static(PUBLIC_PATH_DIRECTORY))
+    app.use(config.public_path, router);
+    app.use(config.public_path, express.static(config.public_path_directory))
 
-    app.listen(port, host);
-    console.log(' started on ', host + ':' + port);
-    console.log(' public path ', host + ':' + port  + '/' +  PUBLIC_PATH );
+    app.listen(config.port, config.host);
+    console.log(' started on ', config.host + ':' + config.port);
+    console.log(' public path ', config.host + ':' + config.port + '/' +  config.public_path );
 }
 
 start()

@@ -26,3 +26,8 @@ yarn.lock
 front/.env
 docker-compose.override.yml
 .env
+
+server/share
+/docker-file.txt
+/redo.sh
+/run.sh
