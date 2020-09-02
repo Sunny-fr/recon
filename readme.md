@@ -15,7 +15,7 @@ docker run \
 -p 40600:8080 \
 -d  \
 --name recon \
--v /Users/YOUR_USER/PATH_TO_YOUR_WORKSPACE/recon/server/share/output:/usr/src/app/share/output \
+-v /Users/YOUR_USER/PATH_TO_YOUR_WORKSPACE/recon/server/share/output:/usr/src/app/server/share/output \
 sunny/recon:latest
 ```
 

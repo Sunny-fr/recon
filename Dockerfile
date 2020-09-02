@@ -1,6 +1,5 @@
 FROM jrottenberg/ffmpeg:4.1-alpine
 FROM node:12-alpine as server
-
 # copy ffmpeg bins from first image
 COPY --from=0 / /
 
@@ -21,7 +20,10 @@ COPY front .
 ARG build_front=false
 RUN if [ "$build_front" = "true" ]; then npm rebuild node-sass && npm install && npm run build; fi
 
+FROM jrottenberg/ffmpeg:4.1-alpine
 FROM node:12-alpine as recon
+# copy ffmpeg bins from first image
+COPY --from=0 / /
 
 COPY --from=server /usr/src/app/server /usr/src/app/server
 COPY --from=front /usr/src/app/front/build /usr/src/app/server/public
