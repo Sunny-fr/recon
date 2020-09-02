@@ -1,5 +1,9 @@
 .idea
 node_modules
 npm-debug.log
+server/share/box/*
+server/share/input/*
+server/share/output/*
+server/share/database/*
 #server/node_modules
 #front/node_modules
