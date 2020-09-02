@@ -24,8 +24,6 @@ yarn-error.log*
 package-lock.json
 yarn.lock
 front/.env
-docker-compose.override.yml
-.env
 
 server/share
 /docker-file.txt
