@@ -6,7 +6,7 @@ Video file optimizer
 
 Build image
 ```
-docker build --build-arg build_front="true" -t sunny/recon .
+docker build -t sunny/recon .
 ```
 
 Run image
