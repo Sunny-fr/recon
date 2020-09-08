@@ -10,13 +10,13 @@ import {readableFileSize} from '../utils/file'
 
 const styles = {
     cell: {
-        height: 50,
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
         padding: 10,
         width: '100%',
-        overflow:'hidden'
+        overflow:'hidden',
+        height: 100
     },
     statusCell: {
         backgroundColor: '#F0F0F0',
@@ -25,6 +25,16 @@ const styles = {
         alignItems: 'center',
         padding: '10px 20px',
         height: '100%'
+    },
+    downloadButton:{
+        backgroundColor: '#42b983',
+        color: '#FFF',
+        fontSize: '13px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontFamily: "'Lato', sans-serif",
+        fontWeight: 'bold'
     }
 }
 
@@ -67,18 +77,9 @@ const DownloadButton = ({file}) => {
             size="small"
             disableElevation
             variant="contained"
-            style={{
-                backgroundColor: '#42b983',
-                color: '#FFF',
-                fontSize: '13px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                fontFamily: "'Lato', sans-serif",
-                fontWeight: 'bold'
-            }} href={path} download>
+            style={styles.downloadButton} href={path} download>
             <CloudDownload style={{marginRight: 10}}/>
-            Choper ({readableFileSize(file.size)})
+            GET ({readableFileSize(file.size)})
         </Button>
     }
 
@@ -94,24 +95,41 @@ const ellipsis = (str, max = 10) => {
     return str
 }
 
+const Preview = ({file}) => {
+    const {status} = file
+    if( status !== "success") return null;
+    return <img
+        style={{maxWidth: 130, maxHeight: 80}}
+        src={config.host +  file.preview}  alt={'preview file'}/>
+}
+
 const File = ({file}) => {
     const displayName = `${file.name} (${readableFileSize(file.originalSize)})`
     return <div style={{animationDuration: '300ms'}} className="list-item animate__animated animate__fadeInDown">
+        <div style={{...styles.cell, height: 30, padding: '0 10px', borderBottom: '1px solid #DEDEDE'}}>
+            <strong>{displayName}</strong>
+        </div>
         <Grid container>
+            {/*<Grid item style={{flexBasis: 150}}>*/}
             <Grid item style={{flexGrow: 1}}>
-                <div style={{...styles.cell,  overflow: 'hidden'}}>
-                    <strong className="ellipsis">{ellipsis(displayName)}</strong>
+                <div style={{...styles.cell}}>
+                    <Preview file={file} />
                 </div>
             </Grid>
+            {/*<Grid item style={{flexGrow: 1}}>*/}
+            {/*    <div style={{...styles.cell, height: '100%',  overflow: 'hidden'}}>*/}
+            {/*        <strong className="ellipsis" style={{marginLeft: 10}}>{ellipsis(displayName)}</strong>*/}
+            {/*    </div>*/}
+            {/*</Grid>*/}
             <Grid item>
-                <div style={styles.cell}>
+                <div style={{ ...styles.cell, height: '100%'}}>
                     <DownloadButton file={file}/>
                 </div>
             </Grid>
             <Grid item style={{flexBasis: 100}}>
                 {file.status === "success" && (
-                    <div style={{...styles.cell, justifyContent: 'center'}}>
-                        {file.optimization} %
+                    <div style={{...styles.cell, height: '100%', justifyContent: 'center'}}>
+                        {100 - file.optimization * 100} %
                     </div>)}
             </Grid>
             <Grid item style={{flexBasis: 150}}>

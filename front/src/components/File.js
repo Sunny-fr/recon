@@ -93,7 +93,7 @@ const File = ({file, onComplete, className}) => {
     const [isUploaded, setIsUploaded] = useState(false)
     const {uploading, uploaded} = state
     const uploadHandler = () => {
-        if (!uploading && uploaded === false && isUploaded === false) {
+        if (!uploading && uploaded === false && isUploaded === false && !state.error) {
             startUpload(file)
                 .then(() => {
                     setIsUploaded(true)

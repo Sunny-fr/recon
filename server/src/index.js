@@ -39,6 +39,7 @@ function start() {
 
     app.use(config.public_path, router);
     app.use(config.public_path, express.static(config.public_path_directory))
+    app.use(config.public_path + config.preview_relative_path, express.static(config.upload.preview))
 
     app.listen(config.port, config.host);
     console.log(' started on ', config.host + ':' + config.port);

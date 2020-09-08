@@ -1,9 +1,14 @@
 const unique = require('../../utils/unique')
-const {worker} = require('./worker')
+const {worker} = require('../worker/worker')
 const config = require('../../config/config')
+const {getExtension} = require('../../utils/string')
 const {saveDatabase} = require('../database/database')
 const {getDatabase} = require('../database/database')
 
+
+const allowedImageFiles = config.allowedImageFiles
+const allowedVideoFiles = config.allowedVideoFiles
+const allowedExtensions = allowedVideoFiles.concat(allowedImageFiles)
 
 
 const addFile = (file) => {
@@ -34,7 +39,12 @@ const upload = async (req) => {
 
             const file = req.files.file;
             const id =  unique()
-            const extension = '.' + file.name.split('.').pop()
+            const extension = getExtension(file.name)
+
+            if (!allowedExtensions.includes(extension)) return Promise.reject({
+                status: false,
+                message: `File Type not supported. Please use (${allowedExtensions.join(', ')})`
+            })
             const path = config.upload.in + id + extension
             await file.mv(path);
 

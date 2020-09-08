@@ -7,7 +7,7 @@ import unique from '../utils/unique'
 const styles = {
     container: {
         padding: 30,
-        margin: '40px auto',
+        margin: '40px auto 0 auto',
         borderRadius: 10,
         border: '3px dashed #FFF',
         transition: 'background-color 300ms ease-out'

@@ -1,6 +1,7 @@
 .idea
 node_modules
 npm-debug.log
+front/build
 server/share/box/*
 server/share/input/*
 server/share/output/*

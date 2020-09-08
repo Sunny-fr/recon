@@ -1,4 +1,5 @@
 const {getDatabase} = require('../database/database')
+const config = require('../../config/config')
 exports.status = function (req, res) {
     const status = getDatabase('history')
 
@@ -12,7 +13,9 @@ exports.status = function (req, res) {
             status: file.status,
             optimization: file.data.optimizationPc,
             originalSize: file.data.size,
-            size: file.data.outputSize
+            size: file.data.outputSize,
+            preview: config.public_path + config.preview_relative_path + file.data.previewFilename,
+            type: file.data.type
         }
     }))
 }

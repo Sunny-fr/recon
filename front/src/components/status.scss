@@ -1,9 +1,13 @@
 .status-list {
-  border-radius: 4px;
-  background-color: #FFFFFF;
-  overflow: hidden;
-  color: #545454;
-  box-shadow: 0 0 5px rgba(0,0,0,.4);
+
+  .list-item {
+    color: #545454;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(0,0,0,.3);
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+  }
 }
 
 

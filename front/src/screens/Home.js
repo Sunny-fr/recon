@@ -49,6 +49,9 @@ const Home = () => {
     return (
         <div style={{margin: 50}}>
             <DropZone setFiles={fileHandler}/>
+            <div style={{marginBottom: 40, textAlign: 'right', padding: 10, color: 'rgba(255,255,255,.6)'}}>
+                supported files : .mp4, .mov, .jpg, .jpeg, .png
+            </div>
             <Queue files={files} removeFromQueue={removeFromQueue} />
             <Status/>
         </div>
