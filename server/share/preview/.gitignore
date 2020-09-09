@@ -1,0 +1,6 @@
+# ouput directory video files
+# Ignore everything in this directory
+.gitignore
+# Except this file
+!.gitignore
+!index.html
