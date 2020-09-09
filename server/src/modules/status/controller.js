@@ -1,5 +1,6 @@
 const {getDatabase} = require('../database/database')
 const config = require('../../config/config')
+const {clear} = require('../database/clear')
 exports.status = function (req, res) {
     const status = getDatabase('history')
 
@@ -18,4 +19,8 @@ exports.status = function (req, res) {
             type: file.data.type
         }
     }))
+}
+exports.clear = function (req, res) {
+    clear()
+    return res.status(200).json({message: 'ok'})
 }

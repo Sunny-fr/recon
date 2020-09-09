@@ -9,6 +9,7 @@ const config = require('./config/config')
 const videoModule = require('./modules/video/register')
 const statusModule = require('./modules/status/register')
 const downloadModule = require('./modules/download/register')
+const {clear} = require('./modules/database/clear')
 
 //const JSON_MAX_PAYLOAD_SIZE = '200mb'
 
@@ -28,8 +29,21 @@ function start() {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended:true}));
     // configure app
-    app.use(morgan( 'dev')); // log requests to the console
+    app.use(morgan( function (tokens, req, res) {
+        const url = tokens.url(req, res)
+        // TODO BLACK LIST !!
+        if (url === '/api/status/') return null
 
+        return [
+            '[' + tokens.status(req, res) + ']',
+            tokens.method(req, res),
+            tokens.url(req, res),
+            tokens.res(req, res, 'content-length'),
+            '-',
+            tokens['response-time'](req, res),
+            'ms',
+        ].join(' ')
+    })); // log requests to the console
 
     //MODULES REGISTRATION
     videoModule.register(app, router, config)
