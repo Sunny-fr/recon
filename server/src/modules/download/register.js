@@ -4,7 +4,7 @@ const controller = require('./controller')
 const register = function (app, router, config) {
 
      router
-         .route('/api/download/:id')
+         .route('/download/:id')
          .get(controller.download)
 
 

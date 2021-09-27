@@ -15,7 +15,7 @@ exports.status = function (req, res) {
             optimization: file.data.optimizationPc,
             originalSize: file.data.size,
             size: file.data.outputSize,
-            preview: config.public_path + config.preview_relative_path + file.data.previewFilename,
+            preview: (config.public_path || '/') + config.preview_relative_path + file.data.previewFilename,
             type: file.data.type
         }
     }))
