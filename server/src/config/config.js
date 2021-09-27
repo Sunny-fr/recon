@@ -23,7 +23,7 @@ const config = {
     databasePath: './share/database/database.json',
     defaultDatabasePath: './src/database/defaultDatabase.json',
     allowedImageFiles: ['.jpg','.jpeg','.png'],
-    allowedVideoFiles: ['.mp4','.mov']
+    allowedVideoFiles: ['.mp4','.mov','.mxf']
 }
 
 module.exports = config

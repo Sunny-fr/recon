@@ -5,18 +5,18 @@ const corsOptions = (_, res) => res.status(200).send()
 const register = function (app, router) {
 
     router
-        .route('/api/clear')
+        .route('/clear')
         .get(controller.clear)
     router
-        .route('/api/clear')
+        .route('/clear')
         .options(corsOptions)
 
     router
-        .route('/api/status')
+        .route('/status')
         .get(controller.status)
 
     router
-        .route('/api/status')
+        .route('/status')
         .options(corsOptions)
 
 

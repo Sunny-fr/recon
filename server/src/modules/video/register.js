@@ -9,11 +9,11 @@ const corsOptions = (req, res) => {
 const register = function (app, router) {
 
      router
-         .route('/api/upload')
+         .route('/upload')
          .post(controller.conversion)
 
      router
-         .route('/api/upload')
+         .route('/upload')
          .options(corsOptions)
 
 

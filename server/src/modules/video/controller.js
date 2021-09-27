@@ -79,12 +79,13 @@ const conversion = (req, res) => {
         })
         .then((data) => {
 
-            res.status(200).send({
+            worker()
+           return  res.status(200).send({
                 status: true,
                 message: 'File is uploaded',
                 data,
             });
-            worker()
+
         })
         .catch(err => {
             return res.status(500).send(err);

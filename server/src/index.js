@@ -6,6 +6,7 @@ const fileUpload = require('express-fileupload');
 const config = require('./config/config')
 
 
+const apiModule = require('./api/api')
 const videoModule = require('./modules/video/register')
 const statusModule = require('./modules/status/register')
 const downloadModule = require('./modules/download/register')
@@ -46,14 +47,16 @@ function start() {
     })); // log requests to the console
 
     //MODULES REGISTRATION
-    videoModule.register(app, router, config)
-    statusModule.register(app, router, config)
-    downloadModule.register(app, router, config)
+    const apiRouter = apiModule.register(app, null, config)
+    videoModule.register(app, apiRouter, config)
+    statusModule.register(app, apiRouter, config)
+    downloadModule.register(app, apiRouter, config)
 
+    const pathRelative = config.public_path + config.preview_relative_path
 
     app.use(config.public_path, router);
     app.use(config.public_path, express.static(config.public_path_directory))
-    app.use(config.public_path + config.preview_relative_path, express.static(config.upload.preview))
+    app.use(pathRelative, express.static(config.upload.preview))
 
     app.listen(config.port, config.host);
     console.log(' started on ', config.host + ':' + config.port);
